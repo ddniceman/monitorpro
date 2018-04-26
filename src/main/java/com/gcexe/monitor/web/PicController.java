@@ -78,6 +78,7 @@ public class PicController {
 	@ResponseBody
 	public ResultCodeVo  searchdata(@RequestBody String json)
 	{
+		System.out.println("");
 		return picService.searchdata(json);
 	}
 	
