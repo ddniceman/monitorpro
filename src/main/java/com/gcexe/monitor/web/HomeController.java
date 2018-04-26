@@ -13,5 +13,6 @@ public class HomeController {
 		System.out.println(str);
 		return "home";
 	}
+	
 
 }
