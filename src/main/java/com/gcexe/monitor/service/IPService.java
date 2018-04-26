@@ -21,12 +21,6 @@ public interface IPService extends BaseService {
 	 */
 	public ResultCodeVo  situation(String json);
 	/**
-	 * IP域名总数/非法域名总数
-	 * @param json
-	 * @return
-	 */
-	public ResultCodeVo  count(String json);
-	/**
 	 * IP平均挂域名态势
 	 * @param json
 	 * @return

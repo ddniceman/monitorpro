@@ -21,11 +21,13 @@
     id, ip_id, ip_com, ip, ip_domain, record_no, record_com, record_time, is_record, 
     create_time, update_time, creator, updator, version
   </sql>
-  <!--  
-  <select id="search" resultMap="BaseResultMap" parameterMap="map">
-  	
+   
+  <select id="search" resultMap="BaseResultMap" parameterType="map">
+  	SELECT * FROM ip_data limit ${pagenum},${limit}
   </select>
-  -->
+  <select id="getRowCount" resultType="java.lang.Integer">
+  	select count(*) as count from ip_data	
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

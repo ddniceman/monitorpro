@@ -61,7 +61,7 @@ public interface IPDataMapper {
 	 */
 	public List<IPData> search(Map<String,Object> map);
     
-    
+	public int getRowCount();
     
     
     

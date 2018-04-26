@@ -19,10 +19,13 @@
     id, key_id, key_name, key_con, title, url, address, create_time, update_time, creator, 
     updator, version
   </sql>
-  <!--  
-  <select id="search" resultMap="BaseResultMap" parameterMap="map">
-  
-  </select>-->
+
+  <select id="search" resultMap="BaseResultMap" parameterType="map">
+  	SELECT * FROM key_search limit ${pagenum},${limit}
+  </select>
+  <select id="getRowCount" resultType="java.lang.Integer">
+  	select count(*) as count from key_search	
+  </select>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

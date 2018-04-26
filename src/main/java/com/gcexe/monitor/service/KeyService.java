@@ -26,5 +26,29 @@ public interface KeyService extends BaseService {
 	 * @return
 	 */
 	public ResultCodeVo map(String json);
+	/**
+	 * 根据关键获取url
+	 * @return
+	 */
+	public ResultCodeVo selectByKey(String json);
+	
+	/**
+	 * 根据url获取关键字
+	 * @return
+	 */
+	public ResultCodeVo selectByUrl(String json);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

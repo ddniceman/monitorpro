@@ -252,9 +252,24 @@
 		open_task = #{openTask,jdbcType=INTEGER}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	<!--  
-	<select id="search" resultMap="ResultMapWithBLOBs"
-		parameterMap="map">
-
-	</select>-->
+	<resultMap id="searResultMap" type="com.gcexe.monitor.persistence.statistics.entity.SysSearchStatis">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="pic_name" jdbcType="VARCHAR" property="picName" />
+		<result column="pic_cnt" jdbcType="INTEGER" property="picCnt" />
+		<result column="monitor_rate_day" jdbcType="INTEGER" property="monitorRate" />
+		<result column="open_task" jdbcType="INTEGER" property="openTask" />
+		<result column="update_time" property="uTime" />
+	</resultMap>
+	<select id="search" parameterType="map"
+		resultMap="searResultMap">
+		select id,
+		pic_name,(LENGTH(pic_url)-LENGTH(REPLACE(pic_url,',',''))+1) as
+		pic_cnt,monitor_rate_day,open_task,update_time
+		from sys_pic limit
+		#{pagenum},#{limit};
+	</select>
+	<select id="getRowCount" resultType="java.lang.Integer">
+		select count(*) as count
+		from sys_pic ;
+	</select>
 </mapper>

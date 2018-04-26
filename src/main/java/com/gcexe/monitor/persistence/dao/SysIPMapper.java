@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.gcexe.monitor.persistence.entity.SysIP;
+import com.gcexe.monitor.persistence.statistics.entity.IPCntStatis;
+import com.gcexe.monitor.persistence.statistics.entity.IPTopStatis;
 
 public interface SysIPMapper {
     /**
@@ -50,26 +52,37 @@ public interface SysIPMapper {
 
 	public List<SysIP> search(Map<String,Object> map);
     
+	public int getRowCount();
+	
     /**
-	 * IP(域名�?)TOP10
+	 * IP(域名数)TOP10
 	 */
-	public List  domainCnt();
+	public List<IPTopStatis>  domainCnt();
 	/**
 	 * 非法域名IPTOP10
 	 */
-	public List  illegalcnt();
+	public List<IPTopStatis>  illegalcnt();
 	/**
-	 * IP域名总数/非法域名总数态势
+	 * IP域名总数态势
 	 */
-	public List  situation();
+	public List<IPCntStatis>  situation(Map<String,Object> param);
 	/**
-	 * IP域名总数/非法域名总数
+	 * IP域名非法域名总数态势
 	 */
-	public List  count();
+	public List<IPCntStatis>  unsituation(Map<String,Object> param);
+	
 	/**
-	 * IP平均挂域名�?�势
+	 * IP域名总数
 	 */
-	public List  avgsituation();
+	public int  situationTotal();
+	/**
+	 * IP域名非法域名总数
+	 */
+	public int  unsituationTotal();
+	/**
+	 * IP平均挂域名态势
+	 */
+	public List<IPCntStatis>  avgsituation(Map<String,Object> param);
     
     
     

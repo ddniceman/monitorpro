@@ -56,7 +56,7 @@ public interface KeySearchMapper {
     
     List<KeySearch> search(Map<String,Object> map);
     
-    
+    int getRowCount();
     
     
     

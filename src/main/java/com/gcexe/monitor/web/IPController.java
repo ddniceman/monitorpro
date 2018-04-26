@@ -117,17 +117,6 @@ public class IPController {
 		return ipService.situation(json);
 	}
 	/**
-	 * IP域名总数/非法域名总数
-	 * @param json
-	 * @return
-	 */
-	@RequestMapping("/count")
-	@ResponseBody
-	public ResultCodeVo  count(@RequestBody String json)
-	{
-		return ipService.count(json);
-	}
-	/**
 	 * IP平均挂域名态势
 	 * @param json
 	 * @return

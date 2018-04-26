@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.gcexe.monitor.persistence.entity.SysKey;
-import com.gcexe.monitor.utils.ResultCodeVo;
+import com.gcexe.monitor.persistence.statistics.entity.KeyTopStatis;
 
 public interface SysKeyMapper {
     /**
@@ -50,25 +50,31 @@ public interface SysKeyMapper {
 	int updateByPrimaryKey(SysKey record);
 
 	List<SysKey> search(Map<String,Object> map);
+	
+	int getRowCount();
     
     /**
 	 * 关键字排名TOP10
 	 *
 	 */
-	public List keyorder();
+	public List<KeyTopStatis> keyorder();
 
 	/**
 	 * 传播站点排名TOP10
 	 * 
 	 */
-	public List siteorder();
+	public List<KeyTopStatis> siteorder();
 
 	/**
 	 * 全球地图趋势分布
 	 * 
 	 */
-	public List map();
+	public int keyCount();
+	public int urlCount();
     
+	public List<KeyTopStatis> selectByKey(Map<String,Object> map);
+	
+	public List<KeyTopStatis> selectByUrl(Map<String,Object> map);
     
     
     

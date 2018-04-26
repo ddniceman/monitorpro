@@ -57,5 +57,6 @@ public interface PicSearchMapper {
     
     List<PicSearch> search(Map<String,Object> map);
     
+    int getRowCount();
     
 }

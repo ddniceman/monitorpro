@@ -49,7 +49,7 @@ public interface SysPicMapper {
 	int updateByPrimaryKey(SysPic record);
 
 	List<SysPic> search(Map<String,Object> map);
-    
+	int getRowCount();
     
     
     

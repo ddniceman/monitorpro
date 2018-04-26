@@ -10,7 +10,10 @@ import com.gcexe.monitor.persistence.dao.PicSearchMapper;
 import com.gcexe.monitor.persistence.dao.SysPicMapper;
 import com.gcexe.monitor.persistence.entity.PicSearch;
 import com.gcexe.monitor.persistence.entity.SysPic;
+import com.gcexe.monitor.utils.ITools;
 import com.gcexe.monitor.utils.ResultCodeVo;
+
+import net.sf.json.JSONObject;
 
 @Service
 public class PicServiceImpl extends BaseServiceCompnent implements PicService {
@@ -19,7 +22,8 @@ public class PicServiceImpl extends BaseServiceCompnent implements PicService {
 	private SysPicMapper sysPicMapper;
 	@Autowired
 	private PicSearchMapper picSearchMapp;
-
+	@Autowired
+	private ITools itools;
 	@Override
 	public ResultCodeVo insert(String json) {
 		// 封装json
@@ -70,17 +74,45 @@ public class PicServiceImpl extends BaseServiceCompnent implements PicService {
 	@Override
 	public ResultCodeVo search(String json) {
 		// 封装json
+		JSONObject JObj = JSONObject.fromObject(json);
+		int pagenum = JObj.getInt("pagenum");
+		int limit = JObj.getInt("limit");
+		int startnum = itools.getStartNum(pagenum, limit);
 		// 设定参数主要是分页
 		Map<String, Object> map = new HashMap<String, Object>();
-		return new ResultCodeVo(true, 0, "success", sysPicMapper.search(map));
+		map.put("pagenum", startnum);
+		map.put("limit", limit);
+		// 总条数
+		int count = sysPicMapper.getRowCount();
+		// 总页数
+		int total = itools.getAllPage(count, limit);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("count", count);
+		resultMap.put("total", total);
+		resultMap.put("data", sysPicMapper.search(map));
+		return new ResultCodeVo(true, 0, "success", resultMap);
 	}
 
 	@Override
 	public ResultCodeVo searchdata(String json) {
 		// 封装json
+		JSONObject JObj = JSONObject.fromObject(json);
+		int pagenum = JObj.getInt("pagenum");
+		int limit = JObj.getInt("limit");
+		int startnum = itools.getStartNum(pagenum, limit);
 		// 设定参数主要是分页
 		Map<String, Object> map = new HashMap<String, Object>();
-		return new ResultCodeVo(true, 0, "success", this.picSearchMapp.search(map));
+		map.put("pagenum", startnum);
+		map.put("limit", limit);
+		// 总条数
+		int count = picSearchMapp.getRowCount();
+		// 总页数
+		int total = itools.getAllPage(count, limit);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("count", count);
+		resultMap.put("total", total);
+		resultMap.put("data", picSearchMapp.search(map));
+		return new ResultCodeVo(true, 0, "success", resultMap);
 	}
 
 }

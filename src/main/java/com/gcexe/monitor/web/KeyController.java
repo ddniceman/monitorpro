@@ -114,5 +114,27 @@ public class KeyController {
 	{
 		return keyService.map(json);
 	}
+	/**
+	 * 根据关键字获取URL
+	 * @param json
+	 * @return
+	 */
+	@RequestMapping("/urllist")
+	@ResponseBody
+	public ResultCodeVo  urllist(@RequestBody String json)
+	{
+		return keyService.selectByKey(json);
+	}
+	/**
+	 * 根据URL获取关键字
+	 * @param json
+	 * @return
+	 */
+	@RequestMapping("/keylist")
+	@ResponseBody
+	public ResultCodeVo  keylist(@RequestBody String json)
+	{
+		return keyService.selectByUrl(json);
+	}
 	
 }
